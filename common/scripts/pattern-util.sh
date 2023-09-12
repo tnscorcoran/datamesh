@@ -1,8 +1,11 @@
 #!/bin/bash
+echo "_tc - 1"
 
 if [ -z "$PATTERN_UTILITY_CONTAINER" ]; then
 	PATTERN_UTILITY_CONTAINER="quay.io/hybridcloudpatterns/utility-container"
 fi
+
+echo "_tc - 2"
 
 UNSUPPORTED_PODMAN_VERSIONS="1.6 1.5"
 for i in ${UNSUPPORTED_PODMAN_VERSIONS}; do
@@ -14,6 +17,9 @@ for i in ${UNSUPPORTED_PODMAN_VERSIONS}; do
 	fi
 done
 
+echo "_tc - 3"
+
+
 if [ -n "$KUBECONFIG" ]; then
     if [[ ! "${KUBECONFIG}" =~ ^$HOME* ]]; then
         echo "${KUBECONFIG} is pointing outside of the HOME folder, this will make it unavailable from the container."
@@ -24,6 +30,9 @@ fi
 # Copy Kubeconfig from current environment. The utilities will pick up ~/.kube/config if set so it's not mandatory
 # $HOME is mounted as itself for any files that are referenced with absolute paths
 # $HOME is mounted to /root because the UID in the container is 0 and that's where SSH looks for credentials
+
+echo "_tc - 4"
+
 
 # Do not quote the ${KUBECONF_ENV} below, otherwise we will pass '' to podman
 # which will be confused
