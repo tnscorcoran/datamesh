@@ -6,7 +6,8 @@ clusterGroup:
     - open-cluster-management
     - vault
     - golang-external-secrets
-    - openshift-storage
+    - config-demo
+    - hello-world
 
   subscriptions:
     acm:
@@ -14,13 +15,11 @@ clusterGroup:
       namespace: open-cluster-management
       channel: release-2.8
       #csv: advanced-cluster-management.v2.6.1
-    lvms:
-      name: lvms-operator
-      namespace: openshift-storage
-      channel: stable-4.12
-      
+
   projects:
     - hub
+    - config-demo
+    - hello-world
 
   applications:
     acm:
@@ -46,17 +45,17 @@ clusterGroup:
       project: hub
       path: common/golang-external-secrets
 
-    # config-demo:
-    #   name: config-demo
-    #   namespace: config-demo
-    #   project: config-demo
-    #   path: charts/all/config-demo
+    config-demo:
+      name: config-demo
+      namespace: config-demo
+      project: config-demo
+      path: charts/all/config-demo
 
-    # hello-world:
-    #   name: hello-world
-    #   namespace: hello-world
-    #   project: hello-world
-    #   path: charts/all/hello-world
+    hello-world:
+      name: hello-world
+      namespace: hello-world
+      project: hello-world
+      path: charts/all/hello-world
 
   imperative:
     # NOTE: We *must* use lists and not hashes. As hashes lose ordering once parsed by helm
